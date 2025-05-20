@@ -21,10 +21,9 @@ fn main() {
     let bytes = std::fs::read("./XAV-AX5550D_v200/SHSO2001.FIR").unwrap();
     let bytes = &bytes[0x80..];
 
-    let mut file = std::fs::File::create("./XAV-AX5550D_V200/SHMD2001.FIR.decrypted").unwrap();
+    let mut file = std::fs::File::create("./XAV-AX5550D_V200/SHSO2001.FIR.decrypted").unwrap();
 
-    let mut bytes_out = Vec::<u8>::new();
-    bytes_out.reserve(bytes.len());
+    let mut bytes_out = vec![0; bytes.len()];
 
     info_span!("XOR").in_scope(|| {
         bytes
